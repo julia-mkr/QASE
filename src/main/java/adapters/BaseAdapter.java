@@ -11,7 +11,7 @@ public class BaseAdapter {
     public static final String BASE_URL = "https://api.qase.io/v1";
     Gson converter = new Gson();
 
-    public String get(String url) {
+    public Response get(String url) {
         return
         given()
                 .header("Token", TOKEN)
@@ -20,7 +20,7 @@ public class BaseAdapter {
                 .get(BASE_URL + url)
         .then()
                 .log().all()
-                .extract().body().asString();
+                .extract().response();
     }
 
     public Response post(String url, String body) {
